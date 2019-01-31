@@ -31,7 +31,7 @@ class JSONEncoder(json.JSONEncoder):
 
 def valid_date(s):
     try:
-        return dt.datetime.strptime(s, "%Y-%m-%dT%H").date()
+        return dt.datetime.strptime(s, "%Y-%m-%dT%H").datetime()
     except ValueError:
         msg = "Not a valid date: '{0}'.".format(s)
         raise argparse.ArgumentTypeError(msg)
@@ -89,7 +89,7 @@ def main():
             exit(-1)
 
         if args.all:
-            args.begindate = dt.date(2006,3,1)
+            args.begindate = dt.datetime(2006,3,1,0)
 
         if args.user:
             tweets = query_tweets_from_user(user = args.query, limit = args.limit)
