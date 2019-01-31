@@ -31,7 +31,7 @@ class JSONEncoder(json.JSONEncoder):
 
 def valid_date(s):
     try:
-        return dt.datetime.strptime(s, "%Y-%m-%dT%H").datetime()
+        return dt.strptime(s, "%Y-%m-%dT%H")
     except ValueError:
         msg = "Not a valid date: '{0}'.".format(s)
         raise argparse.ArgumentTypeError(msg)
