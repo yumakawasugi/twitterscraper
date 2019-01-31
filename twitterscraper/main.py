@@ -31,7 +31,7 @@ class JSONEncoder(json.JSONEncoder):
 
 def valid_date(s):
     try:
-        return dt.datetime.strptime(s, "%Y-%m-%d").date()
+        return dt.datetime.strptime(s, "%Y-%m-%dT%H").date()
     except ValueError:
         msg = "Not a valid date: '{0}'.".format(s)
         raise argparse.ArgumentTypeError(msg)
@@ -75,7 +75,7 @@ def main():
                                  )
         parser.add_argument("-d", "--dump", action="store_true",
                             help="Set this flag if you want to dump the tweets \nto the console rather than outputting to a file")
-        parser.add_argument("-bd", "--begindate", type=valid_date, default="2006-03-21",
+        parser.add_argument("-bd", "--begindate", type=valid_date, default="2006-03-21T00",
                             help="Scrape for tweets starting from this date. Format YYYY-MM-DD. \nDefault value is 2006-03-21", metavar='\b')
         parser.add_argument("-ed", "--enddate", type=valid_date, default=dt.date.today(),
                             help="Scrape for tweets until this date. Format YYYY-MM-DD. \nDefault value is the date of today.", metavar='\b')
