@@ -187,14 +187,15 @@ def query_tweets(query, limit=None, begindate=dt.date(2006, 3, 21), enddate=dt.d
 		# the number of pools should not exceed the number of dates.
         poolsize = no_days
     dateranges = [begindate + dt.timedelta(days=elem) for elem in linspace(0, no_days, poolsize+1)]
-
+    date1 =[2018-09-29_JST_20:00:00]
+	date2 =[2018-09-29_JST_22:00:00]
     if limit:
         limit_per_pool = (limit // poolsize)+1
     else:
         limit_per_pool = None
 
     queries = ['{} since:{} until:{}'.format(query, since, until)
-               for since, until in zip(dateranges[:-1], dateranges[1:])]
+               for since, until in zip(date1,date2)]
 
     all_tweets = []
     try:
